@@ -4,7 +4,7 @@ module WpApiClient
       alias :user :resource
 
       def self.represents?(json)
-        json.dig('_links', 'collection') and json['_links']['collection'].first['href'] =~ /wp\/v2\/users/
+        json.dig('_links', 'collection') and json['_links']['collection'].first['href'] =~ /#{Regexp.escape(WpApiClient.configuration.endpoint)}\/users/
       end
       
     end

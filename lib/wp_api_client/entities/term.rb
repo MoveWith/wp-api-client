@@ -4,7 +4,7 @@ module WpApiClient
       alias :term :resource
 
       def self.represents?(json)
-        json.dig("_links", "about") and json["_links"]["about"].first["href"] =~ /wp\/v2\/taxonomies/
+        json.dig("_links", "about") and json["_links"]["about"].first["href"] =~ /#{Regexp.escape(WpApiClient.configuration.endpoint)}\/taxonomies/
       end
 
       def taxonomy

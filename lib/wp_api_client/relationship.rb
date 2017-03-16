@@ -50,7 +50,7 @@ module WpApiClient
         relations = {}
         r.resource["_links"][r.relation].each_with_index do |link, position|
           # get the post type out of the linked URL.
-          post_type = URI.parse(link["href"]).path.split('wp/v2/').pop.split('/').first
+          post_type = URI.parse(link["href"]).path.split("#{Regexp.escape(WpApiClient.configuration.endpoint)}/").pop.split('/').first
           relations.merge! Hash[post_type, r.load_relation(r.relation, position)]
         end
         relations

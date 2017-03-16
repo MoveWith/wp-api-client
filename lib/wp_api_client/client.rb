@@ -26,7 +26,7 @@ module WpApiClient
   private
 
     def api_path_from(url)
-      url.split('wp/v2/').last
+      url.split("#{WpApiClient.configuration.endpoint}/").last
     end
 
     # Take the API response and figure out what it is

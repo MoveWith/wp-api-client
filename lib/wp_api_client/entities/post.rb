@@ -7,7 +7,11 @@ module WpApiClient
         json.dig("_links", "about") and json["_links"]["about"].first["href"] =~ /#{Regexp.escape(WpApiClient.configuration.endpoint)}\/types/
       end
 
-      def banner_image
+      def id
+        post["id"]
+      end
+
+      def banner_image_url
         post["featured_media_url"]
       end
 

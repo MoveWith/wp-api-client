@@ -24,6 +24,7 @@ module WpApiClient
     attr_accessor :cache
     attr_accessor :basic_auth
     attr_accessor :proxy
+    attr_accessor :access_token
 
     def initialize
       @endpoint = 'http://localhost:8080/wp-json/wp/v2'

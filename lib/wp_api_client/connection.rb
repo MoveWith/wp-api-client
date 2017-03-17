@@ -13,7 +13,13 @@ module WpApiClient
     def initialize(configuration)
       @configuration = configuration
       @queue = []
-      @conn = Faraday.new(url: configuration.endpoint) do |faraday|
+
+      headers = {}
+      if configuration.access_token
+        headers = {'Authorization': "Bearer #{configuration.access_token}"}
+      end
+
+      @conn = Faraday.new(url: configuration.endpoint, headers: headers) do |faraday|
 
         if configuration.oauth_credentials
           faraday.use FaradayMiddleware::OAuth, configuration.oauth_credentials
